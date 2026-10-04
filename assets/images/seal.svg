@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160">
+  <defs>
+    <linearGradient id="sealSilver" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="25%" stop-color="#e2e8f0"/>
+      <stop offset="50%" stop-color="#cbd5e1"/>
+      <stop offset="75%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#94a3b8"/>
+    </linearGradient>
+    <radialGradient id="sealDepthSilver" cx="45%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="45%" stop-color="#e2e8f0"/>
+      <stop offset="80%" stop-color="#94a3b8"/>
+      <stop offset="100%" stop-color="#475569"/>
+    </radialGradient>
+    <filter id="sealShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+  <g filter="url(#sealShadow)">
+    <!-- Organic wax rim in liquid silver -->
+    <path d="M80 8 C95 7, 108 12, 122 19 C136 26, 148 38, 152 54 C156 70, 151 86, 148 102 C145 118, 134 133, 120 142 C106 151, 90 153, 74 151 C58 149, 42 143, 30 132 C18 121, 9 106, 8 90 C7 74, 13 58, 22 45 C31 32, 45 20, 61 13 C67 10, 73 8, 80 8 Z" fill="url(#sealDepthSilver)" stroke="#94a3b8" stroke-width="1.5"/>
+    <!-- Inner silver border ring -->
+    <circle cx="80" cy="80" r="54" fill="none" stroke="url(#sealSilver)" stroke-width="2.5"/>
+    <circle cx="80" cy="80" r="50" fill="none" stroke="#ffffff" stroke-width="1" stroke-dasharray="4,2"/>
+    <!-- Laurel Wreath in Silver -->
+    <path d="M48 95 C42 80, 44 65, 54 52 C58 47, 65 42, 70 40" fill="none" stroke="url(#sealSilver)" stroke-width="1.5"/>
+    <path d="M112 95 C118 80, 116 65, 106 52 C102 47, 95 42, 90 40" fill="none" stroke="url(#sealSilver)" stroke-width="1.5"/>
+    <!-- Laurel leaves -->
+    <ellipse cx="48" cy="72" rx="4" ry="2" transform="rotate(-30 48 72)" fill="url(#sealSilver)"/>
+    <ellipse cx="52" cy="60" rx="4" ry="2" transform="rotate(-20 52 60)" fill="url(#sealSilver)"/>
+    <ellipse cx="60" cy="50" rx="4" ry="2" transform="rotate(-10 60 50)" fill="url(#sealSilver)"/>
+    <ellipse cx="112" cy="72" rx="4" ry="2" transform="rotate(30 112 72)" fill="url(#sealSilver)"/>
+    <ellipse cx="108" cy="60" rx="4" ry="2" transform="rotate(20 108 60)" fill="url(#sealSilver)"/>
+    <ellipse cx="100" cy="50" rx="4" ry="2" transform="rotate(10 100 50)" fill="url(#sealSilver)"/>
+    <!-- Silver Tiara -->
+    <path d="M72 50 L75 42 L80 46 L85 42 L88 50 Z" fill="url(#sealSilver)"/>
+    <!-- Monogram Initial "M" in Silver -->
+    <text x="80" y="97" font-family="'Cinzel Decorative', 'Playfair Display', Georgia, serif" font-size="44" font-weight="bold" fill="url(#sealSilver)" text-anchor="middle" letter-spacing="1">M</text>
+    <!-- Little star under M -->
+    <polygon points="80,105 82,110 87,110 83,113 85,118 80,115 75,118 77,113 73,110 78,110" fill="#ffffff"/>
+    <!-- Subtitle 15 -->
+    <text x="80" y="128" font-family="'Montserrat', sans-serif" font-size="11" font-weight="600" fill="#f8fafc" text-anchor="middle" letter-spacing="3">XV AÑOS</text>
+  </g>
+</svg>

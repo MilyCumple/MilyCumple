@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="theme-color" content="#040816">
+  <title>Mis 15 Años | Mily ✨ Invitación Especial</title>
+  <meta name="description" content="Te invito a celebrar mis 15 años. Una noche mágica bajo las estrellas llena de momentos inolvidables.">
+
+  <!-- OpenGraph / Compartir en WhatsApp & Redes -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Mis 15 Años | Mily ✨ Invitación Especial">
+  <meta property="og:description" content="Te invito a compartir una noche mágica e inolvidable en mis 15 años. ¡Toca para abrir tu invitación!">
+  <meta property="og:image" content="assets/images/foto1.svg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Great+Vibes&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+
+  <!-- Hojas de Estilo CSS -->
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/envelope.css">
+  <link rel="stylesheet" href="assets/css/butterflies.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Fondo interactivo con estrellas en movimiento, destellos y meteoros -->
+  <canvas id="stars-canvas"></canvas>
+
+  <!-- Mariposas de plata voladoras con efecto 3D y brillo -->
+  <div id="butterflies-container"></div>
+
+  <!-- ========================================================
+       1. PANTALLA INICIAL: CARTA / SOBRE DE INVITACIÓN 3D
+       ======================================================== -->
+  <div id="envelope-screen" class="envelope-screen" role="region" aria-label="Pantalla de invitación">
+    <div class="envelope-header">
+      <img src="assets/images/crown.svg" alt="Corona Plateada" class="envelope-crown-icon float-animation" />
+      <p class="envelope-tag">TIENES UNA INVITACIÓN ESPECIAL</p>
+      <h1 class="envelope-title gold-text-shimmer">Mis 15 Años</h1>
+    </div>
+
+    <!-- Sobre 3D Interactivo -->
+    <div id="envelope" class="envelope-wrapper" title="Toca para abrir la carta">
+      <div class="envelope-base">
+        <!-- Carta interior que se eleva al abrir -->
+        <div class="letter-card">
+          <div class="letter-inner-border"></div>
+          <span style="font-size: 1.2rem; color: #ffffff; margin-bottom: 0.2rem;">✨</span>
+          <h2 class="letter-title">Mis 15 Años</h2>
+          <p class="letter-subtitle data-fullname">Milagros Botta</p>
+          <div style="width: 40px; height: 1px; background: #cbd5e1; margin: 0.4rem auto;"></div>
+          <p class="letter-date"><span class="data-day-of-week">Sábado</span> <span class="data-day">21</span> de <span class="data-month">Noviembre</span></p>
+        </div>
+
+        <!-- Solapa superior plegable en 3D -->
+        <div class="envelope-flap"></div>
+
+        <!-- Bolsillo frontal -->
+        <div class="envelope-pocket">
+          <div class="pocket-left"></div>
+          <div class="pocket-right"></div>
+          <div class="pocket-bottom"></div>
+        </div>
+
+        <!-- Sello de Plata Plateado -->
+        <div id="wax-seal" class="wax-seal" role="button" aria-label="Abrir invitación">
+          <div class="wax-seal-pulse"></div>
+          <img src="assets/images/seal.svg" alt="Sello Real Plateado" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Indicador de acción para tocar la carta -->
+    <div id="envelope-prompt" class="envelope-prompt">
+      <button class="prompt-btn gold-glow-pulse" type="button">
+        <span class="prompt-sparkle">✨</span>
+        <span>Toca la carta para abrir</span>
+        <span class="prompt-sparkle">✨</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- REPRODUCTOR FLOTANTE DE MÚSICA (WIDGET PERMANENTE)-->
+  <div id="floating-music-player" class="floating-music" role="region" aria-label="Control de música de fondo">
+    <button id="music-toggle-btn" class="floating-music-btn" style="background:none; border:none; display:flex; align-items:center; gap:0.5rem; cursor:pointer; color:inherit;" aria-label="Controlar música">
+      <div id="vinyl-disc" class="vinyl-disc">
+        <div class="vinyl-center"></div>
+      </div>
+      <div id="sound-wave" class="sound-wave">
+        <span></span><span></span><span></span><span></span>
+      </div>
+      <span id="music-status-text" class="music-label">Música</span>
+    </button>
+  </div>
+
+  <!-- ========================================================
+       2. INTERFAZ PRINCIPAL DE LA INVITACIÓN
+       ======================================================== -->
+  <main id="main-invitation">
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+      <img src="assets/images/crown.svg" alt="Corona XV Años" class="hero-crown float-animation" />
+      <span class="hero-tag">TE INVITO A CELEBRAR</span>
+      <h1 class="hero-title gold-text-shimmer data-nickname">Mily</h1>
+      <p class="hero-fullname data-fullname">Milagros Botta</p>
+
+      <div class="hero-divider">
+        <span class="hero-divider-line"></span>
+        <span class="hero-divider-star">✦</span>
+        <span class="hero-divider-line"></span>
+      </div>
+
+      <div class="hero-date-badge">
+        <p><span class="data-day-of-week">Sábado</span> <span class="data-day">21</span> • <span class="data-month">Noviembre</span> • <span class="data-year">2026</span></p>
+      </div>
+
+      <div class="hero-scroll-indicator">
+        <span>Desliza para descubrir más</span>
+        <div class="scroll-arrow"></div>
+      </div>
+    </section>
+
+    <!-- CONTADOR REGRESIVO -->
+    <section class="section" id="contador">
+      <div class="container">
+        <div class="countdown-box animate-on-scroll">
+          <p class="section-label">FALTAN MUY POCOS DÍAS</p>
+          <h2 class="section-heading gold-text-shimmer">Cuenta Regresiva</h2>
+
+          <div class="countdown-grid" id="countdown-container">
+            <div class="countdown-item">
+              <span class="countdown-number" id="count-days">00</span>
+              <span class="countdown-unit">Días</span>
+            </div>
+            <div class="countdown-item">
+              <span class="countdown-number" id="count-hours">00</span>
+              <span class="countdown-unit">Horas</span>
+            </div>
+            <div class="countdown-item">
+              <span class="countdown-number" id="count-minutes">00</span>
+              <span class="countdown-unit">Minutos</span>
+            </div>
+            <div class="countdown-item">
+              <span class="countdown-number" id="count-seconds">00</span>
+              <span class="countdown-unit">Segundos</span>
+            </div>
+          </div>
+
+          <div id="countdown-celebration-banner" class="celebration-banner"></div>
+
+          <div class="calendar-action">
+            <a id="add-calendar-btn" href="#" target="_blank" rel="noopener" class="btn-outline-gold">
+              <span>📅</span>
+              <span>Agendar en Google Calendar</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENSAJE EMOTIVO / CITA -->
+    <section class="section">
+      <div class="container">
+        <div class="quote-card animate-on-scroll delay-1">
+          <div class="quote-ornament">❝</div>
+          <p class="quote-text" id="data-quote">
+            "Hay momentos en la vida que son mágicos e inolvidables, y compartirlos con las personas que más quiero los hace eternos. Te espero para celebrar juntos una noche mágica bajo las estrellas."
+          </p>
+          <div class="quote-family">
+            <p id="data-parents" style="font-size: 1.05rem; color: #fdf498; font-weight: 500;">Mis padres: Florencia Delgado & Marcos Botta</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ITINERARIO / DETALLES DE LOS EVENTOS -->
+    <section class="section" id="itinerario">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <p class="section-label">DÓNDE Y CUÁNDO</p>
+          <h2 class="section-heading gold-text-shimmer">Detalles del Evento</h2>
+        </div>
+
+        <div class="locations-grid">
+
+          <!-- Tarjeta Fiesta de Gala -->
+          <div class="location-card animate-on-scroll delay-2" id="party-card">
+            <div class="location-icon-circle">🥂</div>
+            <h3 class="location-title">Gran Fiesta de Gala</h3>
+            <div class="location-time" id="party-time">21:00 hs</div>
+            <div class="location-place" id="party-place">Palacio de Cristal Eventos</div>
+            <div class="location-address" id="party-address">Camino de las Palmeras 3500</div>
+            <div class="location-actions">
+              <a id="party-map-btn" href="https://maps.google.com" target="_blank" rel="noopener" class="btn-outline-gold" style="width: 100%;">
+                <span>📍</span>
+                <span>Ver Salón en Maps</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERÍA DE FOTOS -->
+    <section class="section" id="galeria">
+      <div class="container">
+        <div class="gallery-intro animate-on-scroll">
+          <p class="section-label">RECUERDOS INOLVIDABLES</p>
+          <h2 class="section-heading gold-text-shimmer">Galería de Fotos</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem; max-width: 480px; margin: 0 auto;">
+            Un recorrido por los momentos más hermosos que me trajeron hasta aquí. Toca cualquier foto para ampliarla.
+          </p>
+        </div>
+
+        <!-- Grilla de fotos interactiva -->
+        <div class="gallery-grid animate-on-scroll delay-1" id="gallery-grid">
+          <!-- Renderizado dinámicamente por gallery.js -->
+        </div>
+
+        <!-- Botón para ver fotos en Google Drive -->
+        <div class="gallery-action animate-on-scroll delay-2" style="margin-top: 2.2rem; text-align: center;">
+          <a id="gallery-drive-btn" href="https://drive.google.com" target="_blank" rel="noopener" class="btn-silver btn-rsvp-google silver-glow-pulse">
+            <span>📸</span>
+            <span>Ver Álbum en Google Drive</span>
+            <span>✨</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CÓDIGO DE VESTIMENTA -->
+    <section class="section">
+      <div class="container">
+        <div class="dresscode-card animate-on-scroll">
+          <div class="dresscode-icon">👗 👔</div>
+          <p class="section-label">CÓDIGO DE VESTIMENTA</p>
+          <h3 class="dresscode-style" id="dress-code-style">Elegante / Gala</h3>
+          <p class="dresscode-note" id="dress-code-note">
+            Se reserva el color blanco y azul noche exclusivamente para la quinceañera ✨
+          </p>
+
+          <p style="font-size: 0.8rem; letter-spacing: 2px; color: var(--gold-main); text-transform: uppercase; margin-top: 1.2rem;">
+            Colores sugeridos para invitados:
+          </p>
+          <div class="palette-swatches">
+            <div class="swatch-item">
+              <div class="swatch-circle" style="background: #cbd5e1;"></div>
+              <span class="swatch-name">Plata</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-circle" style="background: #94a3b8;"></div>
+              <span class="swatch-name">Gris Perla</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-circle" style="background: #111827;"></div>
+              <span class="swatch-name">Negro</span>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-circle" style="background: #581845;"></div>
+              <span class="swatch-name">Borgoña</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         CONFIRMACIÓN DE ASISTENCIA (RSVP / GOOGLE FORM)
+         ======================================================== -->
+    <section class="section rsvp-section" id="registro">
+      <div class="container">
+        <div class="rsvp-card animate-on-scroll">
+          <span class="rsvp-icon">💌</span>
+          <p class="section-label">TU PRESENCIA ES FUNDAMENTAL</p>
+          <h2 class="rsvp-title gold-text-shimmer">Confirmar Asistencia</h2>
+          <p class="rsvp-text">
+            Por favor, completa el siguiente formulario para confirmar tu lugar en esta noche tan especial.
+          </p>
+
+          <div class="rsvp-deadline-badge">
+            <span>Fecha límite: <strong id="rsvp-deadline">10 de Noviembre, 2026</strong></span>
+          </div>
+
+          <div class="rsvp-actions">
+            <!-- BOTÓN PRINCIPAL DE CONFIRMACIÓN -->
+            <a id="rsvp-google-form-btn" href="https://forms.google.com" target="_blank" rel="noopener" class="btn-silver btn-rsvp-google silver-glow-pulse">
+              <span>✨</span>
+              <span>Confirmar Asistencia</span>
+              <span>✨</span>
+            </a>
+
+            <!-- BOTÓN OPCIONAL WHATSAPP -->
+            <a id="rsvp-whatsapp-btn" href="#" target="_blank" rel="noopener" class="btn-rsvp-whatsapp">
+              <span>💬 Confirmar por WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MESA DE REGALOS / LLUVIA DE SOBRES -->
+    <section class="section" id="regalos">
+      <div class="container">
+        <div class="gifts-card animate-on-scroll">
+          <div class="gifts-icon">🎁</div>
+          <p class="section-label">MESA DE REGALOS</p>
+          <h3 class="gifts-title">Lluvia de Sobres</h3>
+          <p class="gifts-text">
+            Tu presencia es mi mayor alegría. Si deseas hacerme un obsequio, puedes colaborar con mi viaje soñado o colocar tu sobre en el cofre el día del evento:
+          </p>
+
+          <div class="bank-details-box">
+            <div class="bank-row">
+              <span class="bank-label">Alias Bancario:</span>
+              <span class="bank-value" id="bank-alias">MILY.MIS15.FIESTA</span>
+              <button class="btn-copy" id="btn-copy-alias" type="button">Copiar Alias</button>
+            </div>
+            <div class="bank-row">
+              <span class="bank-label">CBU:</span>
+              <span class="bank-value" id="bank-cbu">0000003100012345678901</span>
+              <button class="btn-copy" id="btn-copy-cbu" type="button">Copiar CBU</button>
+            </div>
+            <div class="bank-row">
+              <span class="bank-label">Banco / Titular:</span>
+              <span class="bank-value"><span id="bank-name">Banco Santander</span> (<span id="bank-holder">Milagros Botta</span>)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-monogram">M</div>
+        <p class="footer-quote gold-text-shimmer">¡Gracias por ser parte de mi historia!</p>
+        <p class="footer-text">Te espero para compartir una noche que guardaremos siempre en el corazón ✨</p>
+        <p class="footer-credits">Mis 15 Años • <span class="data-fullname">Milagros Botta</span> • 2026</p>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- ========================================================
+       MODAL LIGHTBOX PARA VISUALIZACIÓN DE FOTOS
+       ======================================================== -->
+  <div id="lightbox-modal" class="lightbox-modal" role="dialog" aria-modal="true" aria-label="Visor de fotografía">
+    <button id="lightbox-close" class="lightbox-close" aria-label="Cerrar visor">&times;</button>
+    <button id="lightbox-prev" class="lightbox-btn lightbox-prev" aria-label="Foto anterior">&#10094;</button>
+    <button id="lightbox-next" class="lightbox-btn lightbox-next" aria-label="Siguiente foto">&#10095;</button>
+
+    <div class="lightbox-content">
+      <img id="lightbox-img" class="lightbox-img" src="" alt="Fotografía ampliada" />
+      <div class="lightbox-caption-box">
+        <h4 id="lightbox-title" class="lightbox-title"></h4>
+        <p id="lightbox-caption" class="lightbox-caption"></p>
+        <div id="lightbox-counter" class="lightbox-counter"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       SCRIPTS JAVASCRIPT MODULARES
+       ======================================================== -->
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/stars.js"></script>
+  <script src="assets/js/music.js"></script>
+  <script src="assets/js/countdown.js"></script>
+  <script src="assets/js/gallery.js"></script>
+  <script src="assets/js/envelope.js"></script>
+  <script src="assets/js/butterflies.js"></script>
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>

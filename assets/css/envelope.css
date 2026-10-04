@@ -1,0 +1,333 @@
+/**
+ * ========================================================
+ * ESTILOS DE LA CARTA / SOBRE DE INVITACIÓN (ENVELOPE.CSS)
+ * ========================================================
+ * Pantalla inicial con sobre 3D interactivo en azul noche
+ * con bordes plateados, sello plateado y extracción de carta.
+ */
+
+.envelope-screen {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at center, #09122a 0%, #040816 75%, #02040b 100%);
+  transition: opacity 0.85s cubic-bezier(0.4, 0, 0.2, 1), transform 0.85s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  padding: 1.5rem;
+}
+
+.envelope-screen.fade-out {
+  opacity: 0;
+  transform: scale(1.08);
+  pointer-events: none;
+}
+
+/* Encabezado del sobre */
+.envelope-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  z-index: 2;
+}
+
+.envelope-crown-icon {
+  width: 55px;
+  height: auto;
+  margin: 0 auto 0.75rem;
+  filter: drop-shadow(0 0 14px rgba(226, 232, 240, 0.7));
+}
+
+.envelope-tag {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  letter-spacing: 4px;
+  color: #cbd5e1;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+
+.envelope-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  text-shadow: 0 0 20px rgba(226, 232, 240, 0.5);
+}
+
+/* Contenedor del sobre con perspectiva 3D */
+.envelope-wrapper {
+  position: relative;
+  width: min(92vw, 380px);
+  height: 250px;
+  cursor: pointer;
+  perspective: 1200px;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.3s ease;
+  z-index: 2;
+}
+
+.envelope-wrapper:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
+.envelope-wrapper:active {
+  transform: scale(0.98);
+}
+
+/* Cuerpo base del sobre */
+.envelope-base {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(145deg, #0b1739 0%, #060e24 100%);
+  border-radius: 12px;
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.7),
+    0 0 0 1.5px rgba(226, 232, 240, 0.45),
+    0 0 25px rgba(203, 213, 225, 0.25);
+  overflow: visible;
+}
+
+/* Carta interior que sale */
+.letter-card {
+  position: absolute;
+  top: 10px;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+  background: linear-gradient(135deg, #0e1e46 0%, #08142e 100%);
+  border-radius: 10px;
+  border: 1.5px solid #cbd5e1;
+  padding: 1.5rem 1rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(226, 232, 240, 0.15);
+  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.85s ease;
+  z-index: 1;
+}
+
+.letter-inner-border {
+  position: absolute;
+  inset: 6px;
+  border: 1px dashed rgba(226, 232, 240, 0.55);
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+.letter-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.2rem;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.1;
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.8);
+}
+
+.letter-subtitle {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  color: #f8fafc;
+  letter-spacing: 2px;
+  margin: 0.3rem 0;
+}
+
+.letter-date {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.78rem;
+  color: #cbd5e1;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* Bolsillo frontal y solapas laterales */
+.envelope-pocket {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.pocket-left {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #09132c 0%, #060d20 100%);
+  clip-path: polygon(0 0, 0 100%, 50% 55%);
+  border-radius: 12px 0 0 12px;
+  border-left: 1px solid rgba(226, 232, 240, 0.4);
+}
+
+.pocket-right {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(-135deg, #09132c 0%, #060d20 100%);
+  clip-path: polygon(100% 0, 100% 100%, 50% 55%);
+  border-radius: 0 12px 12px 0;
+  border-right: 1px solid rgba(226, 232, 240, 0.4);
+}
+
+.pocket-bottom {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, #0c1a3d 0%, #071026 100%);
+  clip-path: polygon(0 100%, 100% 100%, 50% 52%);
+  border-radius: 0 0 12px 12px;
+  border-bottom: 1.5px solid rgba(226, 232, 240, 0.55);
+  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Solapa superior que se abre en 3D */
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #0f214d 0%, #0a1634 100%);
+  clip-path: polygon(0 0, 100% 0, 50% 58%);
+  transform-origin: top center;
+  transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.3s;
+  z-index: 4;
+  border-radius: 12px 12px 0 0;
+}
+
+.envelope-flap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(226, 232, 240, 0.35), transparent);
+  clip-path: polygon(0 0, 100% 0, 50% 58%);
+}
+
+/* Sello de Plata */
+.wax-seal {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 82px;
+  height: 82px;
+  z-index: 5;
+  transition: transform 0.5s ease, opacity 0.4s ease;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.7));
+}
+
+.wax-seal img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.wax-seal-pulse {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(226, 232, 240, 0.7);
+  animation: sealPulseAnim 2s infinite ease-out;
+  pointer-events: none;
+}
+
+@keyframes sealPulseAnim {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.95;
+  }
+  100% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
+/* Estado de apertura del sobre */
+.envelope-wrapper.opened .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 0;
+}
+
+.envelope-wrapper.opened .wax-seal {
+  transform: translate(-50%, -50%) scale(0.6);
+  opacity: 0;
+}
+
+.envelope-wrapper.opened .letter-card {
+  transform: translateY(-110px) scale(1.04);
+  box-shadow: 0 15px 35px rgba(226, 232, 240, 0.35), 0 20px 40px rgba(0, 0, 0, 0.7);
+  z-index: 10;
+}
+
+/* Botón / Indicador para tocar la carta */
+.envelope-prompt {
+  margin-top: 2.2rem;
+  z-index: 2;
+  text-align: center;
+  cursor: pointer;
+}
+
+.prompt-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.8rem;
+  border-radius: 50px;
+  background: rgba(14, 27, 61, 0.8);
+  border: 1px solid rgba(226, 232, 240, 0.65);
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 0 0 18px rgba(226, 232, 240, 0.3);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.prompt-btn:hover {
+  background: rgba(26, 47, 98, 0.95);
+  border-color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(226, 232, 240, 0.5);
+}
+
+.prompt-sparkle {
+  font-size: 1.1rem;
+  color: #ffffff;
+  animation: promptSpin 3s linear infinite;
+}
+
+@keyframes promptSpin {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.2); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+@media (max-width: 480px) {
+  .envelope-wrapper {
+    height: 220px;
+  }
+  .wax-seal {
+    width: 72px;
+    height: 72px;
+  }
+  .letter-title {
+    font-size: 1.9rem;
+  }
+  .prompt-btn {
+    padding: 0.75rem 1.4rem;
+    font-size: 0.88rem;
+  }
+}
